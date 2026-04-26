@@ -1,16 +1,19 @@
 import { useState } from "react";
 import StudentCard from "./StudentCard";
+import RegisterCourse from "./RegisterCourse";
 
 function App() {
 
-    const courses = [
+    const [courses, setCourses] = useState([
         { id: 1, name: "Client Side Programing", credits: 6, grade: 100, attending: true, difficulty: "Moderate" },
         { id: 2, name: "Linear Algebra", credits: 6, grade: 40, attending: false, difficulty: "Hard" },
         { id: 3, name: "Calculus", credits: 6, grade: 80, attending: false, difficulty: "Hard" },
-        { id: 4, name: "English For CST", credits: 3, grade: 60, attending: true, difficulty: "Easy" },
-    ];
+    ]);
 
     let [selectedCourse, setSelectedCourse] = useState(courses[0]);
+    function addCourse(newCourse) {
+        setCourses([...courses, newCourse]);
+    }
 
     return <>
         <h1>Arian Aziri, ID: 132814</h1>
@@ -30,6 +33,7 @@ function App() {
             })
         }
         <StudentCard course={selectedCourse} />
+        <RegisterCourse onSubmit={addCourse} />
     </>
 
 }
